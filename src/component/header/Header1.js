@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./header.css";
 import logo from "./logo.png";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { Link } from "react-router-dom";
 const Header1 = () => {
   const[btnname,setbtnname]=useState("Login")
   return (
@@ -11,9 +12,9 @@ const Header1 = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About US</li>
-          <li>Contact Us</li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About Us</Link></li>
+          <li><Link to="/contact">Contact us</Link></li>
           <button className="login" onClick={()=>{btnname==="Login"?setbtnname("Logout"):setbtnname("Login")}}>{btnname}</button>
         </ul>
       </div>

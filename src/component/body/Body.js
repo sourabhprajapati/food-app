@@ -3,6 +3,8 @@ import ResturantCard from '../ResturantCard/ResturantCard'
 import "./body.css"
 // import resList from '../utils/mockData'
 import Shimmer from '../shimmer/Shimmer'
+import { Link } from 'react-router-dom'
+import useOnlineStatus from '../utils/useOnlineStatus'
 
 const Body = () => {
   const[listofResturant,setlistofResturant]=useState([])
@@ -23,6 +25,13 @@ const Body = () => {
   }
   if(listofResturant.length===0){
     return <Shimmer/>
+  }
+  const onlineStatus=useOnlineStatus();
+
+  if(onlineStatus===false){
+    return(
+      <h1>Looks like you are offline </h1>
+    )
   }
   return (
     <div className='body'>
@@ -55,7 +64,7 @@ const Body = () => {
              {
               filterResturant.map((resturant)=>{
                 return(<div key={resturant.info.id}>
-                  <ResturantCard resData={resturant}/>
+                <Link to={"/restaurants/"+ resturant.info.id}> <ResturantCard resData={resturant}/></Link>
                 </div>)
                    
                })
